@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에테르 워커 | Aether Walker</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        :root {
+            --primary: #00A4FF;
+            --primary-dark: #0086D1;
+            --bg-light: #FFFFFF;
+            --bg-secondary: #F8FCFF;
+            --text-main: #222222;
+            --text-sub: #666666;
+            --border: #E1E8EE;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-main); overflow-x: hidden; scroll-behavior: smooth; }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        /* 섹션별 배경색 교차 */
+        section:nth-child(even) { background-color: var(--bg-secondary); }
+
+        .image-placeholder {
+            background: #F0F4F7;
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #A0ABB6;
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin: 30px 0;
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16/9;
+            /* 각진 디자인 */
+            border-radius: 0; 
+        }
+
+        h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-main); letter-spacing: -1px; }
+        h1 span { color: var(--primary); }
+        h2 { font-size: 2.8rem; font-weight: 700; margin-bottom: 2rem; position: relative; padding-bottom: 15px; }
+        h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--primary); }
+        
+        p { font-size: 1.25rem; line-height: 1.8; max-width: 750px; margin-bottom: 2.5rem; color: var(--text-sub); font-weight: 400; }
+
+        /* Page 1: Home */
+        #home { background: radial-gradient(circle at center, #FFFFFF 0%, #E3F2FD 100%); }
+
+        /* Page 2: Pre-registration */
+        .reg-form { width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); background: white; padding: 10px; }
+        input[type="email"] {
+            padding: 20px;
+            border: 1px solid transparent;
+            font-size: 1.1rem;
+            background: #fff;
+            color: var(--text-main);
+            outline: none;
+            width: 100%;
+        }
+        input[type="email"]:focus { border-bottom: 2px solid var(--primary); }
+        
+        button.submit-btn {
+            padding: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border-radius: 0;
+            margin-top: 10px;
+        }
+        button.submit-btn:hover { background: var(--primary-dark); letter-spacing: 1px; }
+        #message { margin-top: 20px; font-weight: 600; min-height: 24px; }
+
+        /* Character Slider Customization */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            height: 600px; /* 고정 높이로 버벅임 방지 */
+            overflow: hidden;
+            margin: 40px 0;
+            border: 1px solid var(--border);
+            background: white;
+        }
+        .slider {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .card {
+            min-width: 100%;
+            height: 100%;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .card h3 { font-size: 2rem; margin-bottom: 1rem; color: var(--primary); }
+        .card .image-placeholder { aspect-ratio: 1/1; max-width: 300px; margin-bottom: 25px; }
+
+        /* Navigation Buttons - Fixed Position */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            /* transform 제거하고 정확한 센터링을 위해 margin-top 사용 */
+            margin-top: -30px; 
+            background: var(--bg-light);
+            color: var(--primary);
+            border: 1px solid var(--border);
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            z-index: 100;
+            font-size: 1.8rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.2s ease;
+            border-radius: 0; /* 각진 버튼 */
+        }
+        .nav-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        .prev-btn { left: 0; border-left: none; }
+        .next-btn { right: 0; border-right: none; }
+
+        /* Page 5: Footer */
+        footer {
+            background: #111;
+            color: #999;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            text-align: center;
+        }
+        .footer-links { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
+        .footer-links a { color: #ccc; text-decoration: none; font-size: 1rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--primary); }
+        .footer-btn { background: transparent; border: 1px solid #444; padding: 12px 25px; font-size: 0.95rem; cursor: pointer; color: white; transition: all 0.3s; }
+        .footer-btn:hover { border-color: var(--primary); color: var(--primary); }
+        
+        .copyright { color: #555; font-size: 0.9rem; margin-top: 20px; line-height: 1.6; }
+        select { background: #222; color: #ccc; border: 1px solid #333; padding: 10px 15px; border-radius: 0; outline: none; }
+    </style>
+</head>
+<body>
+
+    <!-- 1페이지: 메인 -->
+    <section id="home">
+        <h1>ETHER <span>WALKER</span></h1>
+        <p>"새로운 차원의 문이 열립니다. 아르카디아의 무너진 하늘을 다시 세울 유일한 인도자, 바로 당신입니다."</p>
+        <div class="image-placeholder">MAIN VISUAL CONCEPT ART</div>
+    </section>
+
+    <!-- 2페이지: 사전 예약 -->
+    <section id="register">
+        <h2>PRE-REGISTRATION</h2>
+        <p>지금 사전예약에 참여하고 런칭 한정 '에테르 윙' 아바타를 100% 획득하세요.</p>
+        <form class="reg-form" id="preRegForm">
+            <input type="email" id="email" placeholder="ENTER YOUR EMAIL" required>
+            <button type="submit" class="submit-btn">JOIN THE ADVENTURE</button>
+        </form>
+        <div id="message"></div>
+    </section>
+
+    <!-- 3페이지: 캐릭터 -->
+    <section id="characters">
+        <h2>THE HEROES</h2>
+        <div class="slider-container">
+            <button class="nav-btn prev-btn" id="prevBtn">&lt;</button>
+            <div class="slider" id="characterSlider">
+                <div class="card">
+                    <div class="image-placeholder">ILLUST: ELLA</div>
+                    <h3>검의 성녀, 엘라</h3>
+                    <p>불굴의 의지를 가진 성기사단의 단장. 그녀의 검은 아르카디아의 어둠을 가르는 유일한 빛입니다.</p>
+                </div>
+                <div class="card">
+                    <div class="image-placeholder">ILLUST: KAI</div>
+                    <h3>심연의 마법사, 카이</h3>
+                    <p>금지된 마법을 계승한 자. 차갑고 이성적이지만, 누구보다 세계의 복구를 갈망하고 있습니다.</p>
+                </div>
+                <div class="card">
+                    <div class="image-placeholder">ILLUST: LUNA</div>
+                    <h3>별의 관측자, 루나</h3>
+                    <p>별의 궤적을 읽어 미래를 예견하는 점성술사. 그녀가 본 아르카디아의 미래는 희망일까요, 절망일까요?</p>
+                </div>
+            </div>
+            <button class="nav-btn next-btn" id="nextBtn">&gt;</button>
+        </div>
+    </section>
+
+    <!-- 4페이지: 세계관 -->
+    <section id="world">
+        <h2>WORLD VIEW</h2>
+        <div class="image-placeholder">WORLD CONCEPT ART: ARCADIA</div>
+        <p>천공의 대륙 아르카디아. 거대한 폭발 이후 파편화된 이 세계를 이어 붙이기 위해, 전 세계의 워커들이 집결하고 있습니다. 당신의 여정은 이곳에서 시작됩니다.</p>
+    </section>
+
+    <!-- 5페이지: 푸터 -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">TERMS OF SERVICE</a>
+            <a href="#">PRIVACY POLICY</a>
+            <button class="footer-btn">SUPPORT CENTER</button>
+        </div>
+        
+        <div>
+            LANGUAGE: 
+            <select>
+                <option>KOREAN</option>
+                <option>ENGLISH</option>
+                <option>JAPANESE</option>
+            </select>
+        </div>
+
+        <div class="copyright">
+            &copy; 2026 VIRTUAL GAME STUDIO. ALL RIGHTS RESERVED.<br>
+            THIS IS A VIRTUAL PRE-REGISTRATION LANDING PAGE FOR DEMONSTRATION PURPOSES.
+        </div>
+    </footer>
+
+    <script>
+        // 사전예약 폼 처리
+        document.getElementById('preRegForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const messageDiv = document.getElementById('message');
+            
+            messageDiv.textContent = 'CONNECTING TO SERVER...';
+            messageDiv.style.color = 'var(--primary)';
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    messageDiv.textContent = 'REGISTRATION COMPLETE! WELCOME, WALKER.';
+                    messageDiv.style.color = '#28a745';
+                    document.getElementById('email').value = '';
+                } else {
+                    messageDiv.textContent = data.error || 'AN ERROR OCCURRED.';
+                    messageDiv.style.color = '#dc3545';
+                }
+            } catch (error) {
+                messageDiv.textContent = 'SERVER CONNECTION FAILED.';
+                messageDiv.style.color = '#dc3545';
+            }
+        });
+
+        // 캐릭터 슬라이더 로직
+        const slider = document.getElementById('characterSlider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const cards = document.querySelectorAll('.card');
+        let currentIndex = 0;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : cards.length - 1;
+            updateSlider();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex < cards.length - 1) ? currentIndex + 1 : 0;
+            updateSlider();
+        });
+    </script>
+</body>
+</html>

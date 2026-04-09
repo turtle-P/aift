@@ -1,18 +1,16 @@
 {
-  "name": "render-neon-app",
+  "name": "game-pre-reg",
   "version": "1.0.0",
-  "description": "Render and Neon Postgres Connection Example",
-  "main": "index.js",
+  "description": "Virtual Game Pre-registration Landing Page",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node --watch index.js"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "dotenv": "^16.4.7",
-    "express": "^4.21.0",
-    "pg": "^8.13.0"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5"
   }
 }
