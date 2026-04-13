@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>에테르 워커 | Aether Walker</title>
+    <title>망향 | Re:verie</title>
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
@@ -93,7 +93,7 @@
             position: relative;
             width: 100%;
             max-width: 700px;
-            height: 600px; /* 고정 높이로 버벅임 방지 */
+            height: 600px; 
             overflow: hidden;
             margin: 40px 0;
             border: 1px solid var(--border);
@@ -117,11 +117,9 @@
         .card h3 { font-size: 2rem; margin-bottom: 1rem; color: var(--primary); }
         .card .image-placeholder { aspect-ratio: 1/1; max-width: 300px; margin-bottom: 25px; }
 
-        /* Navigation Buttons - Fixed Position */
         .nav-btn {
             position: absolute;
             top: 50%;
-            /* transform 제거하고 정확한 센터링을 위해 margin-top 사용 */
             margin-top: -30px; 
             background: var(--bg-light);
             color: var(--primary);
@@ -135,13 +133,12 @@
             justify-content: center;
             align-items: center;
             transition: all 0.2s ease;
-            border-radius: 0; /* 각진 버튼 */
+            border-radius: 0;
         }
         .nav-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
         .prev-btn { left: 0; border-left: none; }
         .next-btn { right: 0; border-right: none; }
 
-        /* Page 5: Footer */
         footer {
             background: #111;
             color: #999;
@@ -166,42 +163,42 @@
 
     <!-- 1페이지: 메인 -->
     <section id="home">
-        <h1>ETHER <span>WALKER</span></h1>
-        <p>"새로운 차원의 문이 열립니다. 아르카디아의 무너진 하늘을 다시 세울 유일한 인도자, 바로 당신입니다."</p>
+        <h1>망향 <span>Re:verie</span></h1>
+        <p>"바라고 또 바라도 이룰 수 없더라도, 그럼에도 불구하고 닿지 않는 저 별을 향하여 - "</p>
         <div class="image-placeholder">MAIN VISUAL CONCEPT ART</div>
     </section>
 
     <!-- 2페이지: 사전 예약 -->
     <section id="register">
         <h2>PRE-REGISTRATION</h2>
-        <p>지금 사전예약에 참여하고 런칭 한정 '에테르 윙' 아바타를 100% 획득하세요.</p>
+        <p>지금 사전예약에 참여하고 런칭 한정 '꿈의 파편' 아바타를 100% 획득하세요.</p>
         <form class="reg-form" id="preRegForm">
             <input type="email" id="email" placeholder="ENTER YOUR EMAIL" required>
-            <button type="submit" class="submit-btn">JOIN THE ADVENTURE</button>
+            <button type="submit" class="submit-btn">JOIN THE REVERIE</button>
         </form>
         <div id="message"></div>
     </section>
 
     <!-- 3페이지: 캐릭터 -->
     <section id="characters">
-        <h2>THE HEROES</h2>
+        <h2>THE DREAMERS</h2>
         <div class="slider-container">
             <button class="nav-btn prev-btn" id="prevBtn">&lt;</button>
             <div class="slider" id="characterSlider">
                 <div class="card">
                     <div class="image-placeholder">ILLUST: ELLA</div>
                     <h3>검의 성녀, 엘라</h3>
-                    <p>불굴의 의지를 가진 성기사단의 단장. 그녀의 검은 아르카디아의 어둠을 가르는 유일한 빛입니다.</p>
+                    <p>불굴의 의지를 가진 성기사단의 단장. 그녀의 검은 무너진 꿈속에서도 유일한 이정표가 됩니다.</p>
                 </div>
                 <div class="card">
                     <div class="image-placeholder">ILLUST: KAI</div>
                     <h3>심연의 마법사, 카이</h3>
-                    <p>금지된 마법을 계승한 자. 차갑고 이성적이지만, 누구보다 세계의 복구를 갈망하고 있습니다.</p>
+                    <p>금지된 마법을 계승한 자. 차갑고 이성적이지만, 누구보다 진실된 세계로의 회귀를 갈망하고 있습니다.</p>
                 </div>
                 <div class="card">
                     <div class="image-placeholder">ILLUST: LUNA</div>
                     <h3>별의 관측자, 루나</h3>
-                    <p>별의 궤적을 읽어 미래를 예견하는 점성술사. 그녀가 본 아르카디아의 미래는 희망일까요, 절망일까요?</p>
+                    <p>별의 궤적을 읽어 미래를 예견하는 점성술사. 그녀가 본 망향의 끝에는 무엇이 기다리고 있을까요?</p>
                 </div>
             </div>
             <button class="nav-btn next-btn" id="nextBtn">&gt;</button>
@@ -211,8 +208,8 @@
     <!-- 4페이지: 세계관 -->
     <section id="world">
         <h2>WORLD VIEW</h2>
-        <div class="image-placeholder">WORLD CONCEPT ART: ARCADIA</div>
-        <p>천공의 대륙 아르카디아. 거대한 폭발 이후 파편화된 이 세계를 이어 붙이기 위해, 전 세계의 워커들이 집결하고 있습니다. 당신의 여정은 이곳에서 시작됩니다.</p>
+        <div class="image-placeholder">WORLD CONCEPT ART: REVERIE</div>
+        <p>기억의 파편들이 흩어진 세계, Re:verie. 바라고 바랐던 낙원은 이제 사라졌지만, 그 흔적을 쫓는 방랑자들이 모여 새로운 이야기를 써 내려갑니다.</p>
     </section>
 
     <!-- 5페이지: 푸터 -->
@@ -258,7 +255,7 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    messageDiv.textContent = 'REGISTRATION COMPLETE! WELCOME, WALKER.';
+                    messageDiv.textContent = 'REGISTRATION COMPLETE! WELCOME TO REVERIE.';
                     messageDiv.style.color = '#28a745';
                     document.getElementById('email').value = '';
                 } else {
